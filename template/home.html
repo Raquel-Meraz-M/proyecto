@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FlavorQuest</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'estilos.css' %}">
+</head>
+<body>
+
+    <div class="appbar">
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="conocenos">Sobre nosotros</a></li>
+                <li><a href="galeria">Galeria</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="linea"></div>
+    <header>
+        <div class="containe">
+            <img src="{% static 'restaurante.jpg' %}">
+            <hr>
+            <h1>Reseñas de diversos restaurantes</h1>
+        </div>
+    </header>
+
+    <div class="linea"></div>
+
+    <section>
+        {% for elemento in Restaurantes %}
+             <article>
+                 <h3> {{ elemento.nombre }} </h3> <br>
+                 <img src="{{ elemento.imagen }}">
+                 <p>
+                    {{ elemento.contenido}}
+                 </p>
+                 <footer>
+                     Autor: {{ elemento.autor}}
+                 </footer>
+            </article>
+        {% endfor %}
+    </section>
+    
+    <div class="linea"></div>
+
+    <section>
+        <form action="" method="post">
+            {% csrf_token %}
+            <h2>Comunicate con nosotros</h2>
+            <input type="text" name="nombre" placeholder="Escriba su nombre"> <br>
+            Escriba su mensaje: <br>
+            <textarea name="mensaje">
+
+            </textarea> <br>
+            <input type="submit" name="enviar" value="Enviar Comentario">
+            {% if mensaje %}
+            <h2>{{ mensaje }}</h2>
+            {% endif %}
+        </form>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
